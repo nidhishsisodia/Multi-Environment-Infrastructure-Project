@@ -56,6 +56,14 @@ The project is divided into two main components:
 
 Example structure:
 
+project-root
+│
+├── terraform
+│ └── infra
+│
+└── ansible
+├── inventories
+└── playbooks
 
 ---
 
@@ -77,9 +85,20 @@ Terraform uses a **modular structure** to reuse infrastructure configuration acr
 
 Core infrastructure files:
 
+infra/
+├── bucket.tf
+├── dynamodb.tf
+├── ec2.tf
+├── output.tf
+└── variable.tf
 
 Root Terraform configuration:
 
+terraform/
+├── main.tf
+├── providers.tf
+├── terraform.tf
+└── infra/
 
 ---
 
@@ -107,6 +126,11 @@ Separate inventories are maintained for:
 
 Example structure:
 
+ansible/
+├── inventories
+│ ├── dev
+│ ├── stg
+│ └── prod
 
 ---
 
@@ -116,6 +140,8 @@ Ansible playbooks automate the installation and configuration of **Nginx** acros
 
 Playbook structure:
 
+ansible/playbooks/
+└── install_nginx_playbook.yml
 
 An **Ansible role (`nginx-role`)** is used to organize tasks including:
 
@@ -135,6 +161,21 @@ This ensures infrastructure and configuration remain synchronized across all env
 
 # Final Project Structure
 
+├── README.md
+├── terraform
+│ ├── infra
+│ ├── main.tf
+│ ├── providers.tf
+│ └── terraform.tf
+│
+└── ansible
+├── inventories
+│ ├── dev
+│ ├── stg
+│ └── prod
+├── playbooks
+│ └── install_nginx_playbook.yml
+└── update_inventories.sh
 
 ---
 
